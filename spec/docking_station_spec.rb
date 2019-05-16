@@ -47,4 +47,14 @@ describe DockingStation do
     2.times { subject.dock(Bike.new) }
     expect { 3.times { subject.release_bike } }.to raise_error(RuntimeError)
   end
+
+  it "can set docking station capacity" do
+    expect{DockingStation.new(30)}.not_to raise_error
+  end
+
+  it "can store more bikes than default capacity" do
+      station = DockingStation.new(30)
+      expect { (DockingStation::DEFAULT_CAPACITY + 1).times { station.dock(Bike.new) } }.not_to raise_error
+
+  end
 end
