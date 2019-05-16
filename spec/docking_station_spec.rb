@@ -49,12 +49,17 @@ describe DockingStation do
   end
 
   it "can set docking station capacity" do
-    expect{DockingStation.new(30)}.not_to raise_error
+    expect { DockingStation.new(30) }.not_to raise_error
   end
 
   it "can store more bikes than default capacity" do
-      station = DockingStation.new(30)
-      expect { (DockingStation::DEFAULT_CAPACITY + 1).times { station.dock(Bike.new) } }.not_to raise_error
-
+    station = DockingStation.new(30)
+    expect { (DockingStation::DEFAULT_CAPACITY + 1).times { station.dock(Bike.new) } }.not_to raise_error
+  end
+  it "can see if the bike being returned is broken" do
+    bike.broken = true
+    subject.dock(bike)
+    expect(subject.docked).to include(bike)
+    expect(bike.working?).to be false
   end
 end

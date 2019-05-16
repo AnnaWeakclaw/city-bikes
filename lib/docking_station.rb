@@ -14,6 +14,7 @@ class DockingStation
   end
 
   def dock(bike)
+    check(bike)
     full? ? raise { RuntimeError.new } : @docked.push(bike)
   end
 
@@ -21,5 +22,9 @@ class DockingStation
 
   def full?
     true if @docked.length == @capacity
+  end
+
+  def check(bike)
+    bike.working?
   end
 end
