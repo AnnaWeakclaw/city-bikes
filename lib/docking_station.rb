@@ -10,11 +10,25 @@ class DockingStation
   end
 
   def release_bike
-    return @docked.empty? ? raise { RuntimeError.new } : @docked.shift
+    if @docked.empty? || all_bikes_broken?
+      raise { RuntimeError.new }
+    else
+      #I want to give a customer a working bike and make sure that my @docked still have 
+      #correct bikes inside
+      good_bikes = @docked.select { |bike|
+        bike.working?
+      }
+      bad_bikes  = @docked.select { |bike|
+        !bike.working?
+      }
+       fine_bike = good_bikes.shift
+      end
+      @docked = good_bikes + bad_bikes
+      return fine_bike
+    
   end
 
   def dock(bike)
-    check(bike)
     full? ? raise { RuntimeError.new } : @docked.push(bike)
   end
 
@@ -24,7 +38,13 @@ class DockingStation
     true if @docked.length == @capacity
   end
 
-  def check(bike)
-    bike.working?
+  def all_bikes_broken?
+    unsuitable = false
+    @docked.each { |bike|
+      if !bike.working?
+        unsuitable = true
+      end
+    }
+    true if unsuitable
   end
 end
