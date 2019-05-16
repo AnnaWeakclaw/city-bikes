@@ -60,7 +60,7 @@ describe DockingStation do
   it "can see if the bike being returned is broken" do
     bike.broken = true
     subject.dock(bike)
-    expect(subject.docked).to include(bike)
+    
     expect(bike.working?).to be false
   end
 
@@ -68,5 +68,11 @@ describe DockingStation do
     bike.broken = true
     subject.dock(bike)
     expect { subject.release_bike }.to raise_error(RuntimeError)
+  end
+
+  it "accepts broken bikes" do
+    bike.broken = true
+    subject.dock(bike)
+    expect(subject.docked).to include(bike)
   end
 end
