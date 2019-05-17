@@ -4,12 +4,14 @@ describe DockingStation do
   # it 'responds to release_bike' do
   #   expect(DockingStation).to respond_to :release_bike
   # end
-  let(:bike) { Bike.new }
+  let(:bike) { double(Bike.new) }
   let(:pedalo) { Bike.new }
 
   it { should respond_to :release_bike }
 
   it "should return a working bike" do
+    #mock a method from the bike collaborator
+    allow(bike).to receive(:working?) { true }
     subject.dock(bike)
     bike = subject.release_bike
     expect(bike).to be_working
@@ -58,9 +60,11 @@ describe DockingStation do
   end
 
   it "can see if the bike being returned is broken" do
+    allow(bike).to receive(:broken) { true }
+    allow(bike).to receive(:working?).and_call_original
     bike.broken = true
     subject.dock(bike)
-    
+
     expect(bike.working?).to be false
   end
 
