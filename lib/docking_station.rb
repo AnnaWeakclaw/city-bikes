@@ -19,7 +19,7 @@ class DockingStation
         bike.working?
       }
       bad_bikes = list_bad_bikes
-      
+
       fine_bike = good_bikes.shift
     end
     @docked = good_bikes + bad_bikes
@@ -28,6 +28,10 @@ class DockingStation
 
   def dock(bike)
     full? ? raise { RuntimeError.new } : @docked.push(bike)
+  end
+
+  def call_a_van
+    Van.new(list_bad_bikes)
   end
 
   private
@@ -50,9 +54,5 @@ class DockingStation
     @docked.select { |bike|
       !bike.working?
     }
-  end
-
-  def call_a_van
-    Van.new(list_bad_bikes)
   end
 end

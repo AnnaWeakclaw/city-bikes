@@ -84,4 +84,10 @@ describe DockingStation do
     subject.dock(bike)
     expect(subject.docked).to include(bike)
   end
+
+  it "can list broken bikes and give them to a van" do
+    bikes = [double(Bike.new), double(Bike.new)]
+    van = double (Van.new(bikes))
+    expect(subject.call_a_van).to be_an_instance_of(Van)
+  end
 end
