@@ -88,6 +88,7 @@ describe DockingStation do
   it "can list broken bikes and give them to a van" do
     bikes = [double(Bike.new), double(Bike.new)]
     van = double (Van.new(bikes))
-    expect(subject.call_a_van).to be_an_instance_of(Van)
+    
+    expect(subject.call_a_van).to be_an_instance_of(Garage)
   end
 end
