@@ -1,4 +1,4 @@
-require 'garage.rb'
+require_relative 'garage.rb'
 
 class Van
   def initialize(broken_or_fixed_bikes)

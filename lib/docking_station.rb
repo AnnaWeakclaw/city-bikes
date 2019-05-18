@@ -36,20 +36,20 @@ class DockingStation
     van.deliver_broken_bikes
   end
 
-  private
+  #private
 
   def full?
     true if @docked.length == @capacity
   end
 
   def all_bikes_broken?
-    unsuitable = false
+    unsuitable = true
     @docked.each { |bike|
-      if !bike.working?
-        unsuitable = true
+      if bike.working?
+        unsuitable = false
       end
     }
-    true if unsuitable
+    unsuitable
   end
 
   def list_bad_bikes
