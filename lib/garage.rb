@@ -1,6 +1,7 @@
 class Garage
-  def initialize(broken_bikes)
+  def initialize(station, broken_bikes)
     @broken_bikes = broken_bikes
+    @station = station
   end
 
   def fix
@@ -12,7 +13,7 @@ class Garage
   end
 
   def call_a_van
-    van = Van.new(@fixed_bikes)
-    van.deliver_fixed_bikes
+    van = Van.new(@station, @fixed_bikes)
+    van.deliver_fixed_bikes(@station)
   end
 end

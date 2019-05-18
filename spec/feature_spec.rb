@@ -28,5 +28,8 @@
 # garage.fix
 
 # garage.call_a_van
+# station2.docked
+
+# 3.times {station2.release_bike}
 
 

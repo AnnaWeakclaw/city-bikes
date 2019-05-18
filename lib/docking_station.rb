@@ -32,7 +32,8 @@ class DockingStation
   end
 
   def call_a_van
-    van = Van.new(list_bad_bikes)
+    van = Van.new(self,list_bad_bikes)
+    release_broken_bikes(list_bad_bikes)
     van.deliver_broken_bikes
   end
 
@@ -57,4 +58,11 @@ class DockingStation
       !bike.working?
     }
   end
+
+  def release_broken_bikes(broken)
+    broken.each do |bike|
+      if @docked.delete(bike) 
+    end
+  end
+end
 end
