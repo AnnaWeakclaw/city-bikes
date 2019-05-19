@@ -37,7 +37,7 @@ class DockingStation
     van.deliver_broken_bikes
   end
 
-  #private
+  private
 
   def full?
     true if @docked.length == @capacity
