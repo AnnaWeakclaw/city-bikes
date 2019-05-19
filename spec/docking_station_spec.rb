@@ -63,7 +63,7 @@ describe DockingStation do
     allow(bike).to receive(:broken) { true }
     allow(bike).to receive(:working?) { false }
     # TODO: how to call original working? if we only want to stub broken? allow(bike).to receive(:working?).and_call_original
-   # bike.broken = true
+    # bike.broken = true
     subject.dock(bike)
     #The assertion below no longer makes sense after using doubles?
     expect(bike.working?).to be false
@@ -87,8 +87,8 @@ describe DockingStation do
 
   it "can list broken bikes and give them to a van" do
     bikes = [double(Bike.new), double(Bike.new)]
-    van = double (Van.new(bikes))
-    
+    van = double (Van.new(subject, bikes))
+
     expect(subject.call_a_van).to be_an_instance_of(Garage)
   end
 end

@@ -1,4 +1,4 @@
-require_relative 'garage.rb'
+require_relative "garage.rb"
 
 class Van
   def initialize(station, broken_or_fixed_bikes)
@@ -11,10 +11,9 @@ class Van
   end
 
   def deliver_fixed_bikes(station)
-    #TODO: How to return them to the existing docking station
+    # Returns the bikes to the existing docking station
     @broken_or_fixed_bikes.each do |fine_bike|
-    @station.dock(fine_bike)
+      @station.dock(fine_bike)
     end
   end
-
 end

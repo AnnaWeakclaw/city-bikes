@@ -13,6 +13,7 @@ class Garage
   end
 
   def call_a_van
+    # TODO: If the garage can't fix bikes this will fail as there will be nothing to give to the van
     van = Van.new(@station, @fixed_bikes)
     van.deliver_fixed_bikes(@station)
   end
